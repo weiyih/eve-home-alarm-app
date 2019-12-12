@@ -1,0 +1,7 @@
+{
+  "name": "UbicomApp",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}
