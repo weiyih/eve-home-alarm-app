@@ -22,11 +22,11 @@ export class HomePage {
   }
 
   navigate(){
-    this.route="alarms/alrmidhere";
-    firebase.database().ref(this.route)
+
+    firebase.database().ref(this.route+"/alrmidhere")
     .update(
     {
-    Description:"Someone breaks inside door",ID:"alrmidhere"})
+    Description:"Someone breaks inside door",ID:"alrmidhere",approve:false})
     
 
   }
@@ -35,12 +35,16 @@ export class HomePage {
     
     var ok = this;
     this.firebaseObject.on("value",snapshot=>{
-      
-    console.log(JSON.stringify(snapshot.val()));
+
+
     if(ok.iffirsttime===false){
+
       if(this.res=="")
-        {ok.iffirsttime=true;
-        this.router.navigateByUrl('/auth');}
+        {
+          if(snapshot.hasChild("alrmidhere"))
+          {
+         ok.iffirsttime=true;
+        this.router.navigateByUrl('/auth');}}
       else{
          this.res=""
 

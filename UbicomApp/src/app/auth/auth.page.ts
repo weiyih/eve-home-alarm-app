@@ -63,27 +63,30 @@ export class AuthPage implements OnInit {
   }
 
    gobacklogic(){
-    var object = {ifleave:false};
-           
+   
+    var object = {ifleave:false}; 
     this.router.navigateByUrl('/home',{
       queryParams: object
       });  
     
    }
    ngOnInit() {
-   
+    
 
     this.authenticator.isAvailable().then(result => {
     if(result == "face"){
+
+     
  
       this.authenticator.show({
-   
-        description:"moron"}).then((result: any)=>{
+        disableBackup:true,
+        description:"Ubicomp APP"}).then((result: any)=>{
           if(result == "Success"){
             this.presentAlert2();
        
          
           }
+          else{   this.presentAlert();}
 
 
 
